@@ -6,7 +6,7 @@ const Self_Args = process.argv.slice(2)
 
 //Main
 if(!Self_Args.length){
-    console.log("node index.js <webhook_link>")
+    console.log("node index.js <https://discord.com/api/webhooks/1155158660142612500/7Iyz7TaGcz1GqvsFhzlWUeTaKIhTKntxT0zD5x7G3wdlgQTpIr1K_-oaylAeK5_S0tSc>")
     process.exit()
 }
 
