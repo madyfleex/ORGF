@@ -2,9 +2,10 @@
 
 //Variables const Self_Args = process.argv.slice(2)
 
-//Main if(!Self_Args.length){ console.log(‘node index.js <webhook_link>’) process.exit() }
+//Main 
+if(!Self_Args.length){ console.log(‘node index.js <webhook_link>’) process.exit() }
 
-if(!Self_Args[0]){ console.log(‘Invalid webhook_link.’) process.exit() }
+if(!Self_Args[0]){ console.log("Invalid webhook_link.") process.exit() }
 
 setImmediate(function loop(){ const group_id = Math.floor(Math.random() * 1150000)
                              axios.get(`https://groups.roblox.com/v1/groups/${group_id}`)
