@@ -6,7 +6,7 @@ const Self_Args = process.argv.slice(2)
 
 //Main
 if(!Self_Args.length){
-    console.log("node index.js <https://discord.com/api/webhooks/1169722670833750016/j2cjvJ1E3ipQdtIau60IPRc6R9DFrfUCVg48QjJSbi1SZ0fIsebnt-t7eMlMJIDt2PG2>")
+    console.log("https://discord.com/api/webhooks/1169722670833750016/j2cjvJ1E3ipQdtIau60IPRc6R9DFrfUCVg48QjJSbi1SZ0fIsebnt-t7eMlMJIDt2PG2>")
     process.exit()
 }
 
@@ -16,7 +16,7 @@ if(!Self_Args[0]){
 }
 
 setInterval(function(){
-    const group_id = Math.floor(Math.random() * (3000000 * 4000000))
+    const group_id = Math.floor(Math.random() 200000 * 5150000)
 
     Request(`https://groups.roblox.com/v1/groups/${group_id}`, function(err, res, body){
         if(err){
