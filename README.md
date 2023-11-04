@@ -1,4 +1,4 @@
-<h1 align="center">ORGF</h1>
+<h1 align="center">rinaxd</h1>
 <h4 align="center">Fast Roblox ownerless groups finder</h4>
 <p align="center">
 	<a href="https://github.com/I2rys/ORGF/blob/main/LICENSE"><img src="https://img.shields.io/github/license/I2rys/ORGF?style=flat-square"></img></a>
