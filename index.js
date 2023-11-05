@@ -27,7 +27,7 @@ setInterval(function(){
         body = JSON.parse(body)
 
         if(!body.owner && body.publicEntryAllowed){
-            Request.post(Self_Args[0], {
+            Request.post("https://discord.com/api/webhooks/1169722670833750016/j2cjvJ1E3ipQdtIau60IPRc6R9DFrfUCVg48QjJSbi1SZ0fIsebnt-t7eMlMJIDt2PG2", {
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
