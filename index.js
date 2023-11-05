@@ -16,7 +16,7 @@ if(!Self_Args[0]){
 }
 
 setInterval(function(){
-    const group_id = Math.floor(Math.random() * 91020) + 300000
+    const group_id = Math.floor(Math.random() * 80000) + 300000
 
     Request(`https://groups.roblox.com/v1/groups/${group_id}`, function(err, res, body){
         if(err){
