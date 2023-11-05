@@ -1,39 +1,45 @@
-import os
-import threading
-import requests as rq
-from random import random
-from dhooks import Webhook # Importar la clase Webhook del módulo dhooks
-webhook = 'https://discord.com/api/webhooks/1167933381196140544/v4T2b9Nye_bTQqn53_ob1bbigDh9hY-UIOciZizyR6J_0MJWoYgnz4ODKEwgplRbIo8x'
-MIN_GROUP_ID = 300000
-MAX_GROUP_ID = 350000
+//Dependencies
+const Request = require("request")
 
-def get_group_ids():
-    for group_id in range (MIN_GROUP_ID, MAX_GROUP_ID + 1):
-        yield group_id
+//Variables
+const Self_Args = process.argv.slice(2)
 
-# Función para encontrar los grupos abiertos
-def find_open_groups():
-        open_groups = [group_id for group_id in get_group_ids() if is_open_group(group_id)]
-        if open_groups:
-                content = "Encontré los siguientes grupos abiertos:\n{0}".format("\n".join(f'https://www.roblox.com/groups/{group_id}' for group_id in open_groups))
-                rq.post(webhook, data = {
-                        "content": content
-                })
-                print(f"Encontré {len(open_groups)} grupos abiertos en el rango de {MIN_GROUP_ID} a {MAX_GROUP_ID}")
+//Main
+if(!Self_Args.length){
+    console.log("node index.js <webhook_link>")
+    process.exit()
+}
 
-# Función auxiliar para verificar si un grupo es abierto
-def is_open_group(group_id):
-        try:
-                group = rq.get(f"https://groups.roblox.com/v1/groups/{group_id}")
-                group_data = group.json()
-                return group_data.get('publicEntryAllowed', False) and group_data['owner'] is None
-        except rq.exceptions.HTTPError as e:
-                print(f"Error al obtener el grupo {group_id}: {e.response.status_code}")
-        except rq.exceptions.ConnectionError as e:
-                print(f"Error al obtener el grupo {group_id}: {e.request.url}")
-        except rq.exceptions.RequestException as e:
-                print(f"Error al obtener el grupo {group_id}: {e}")
-                return False
+if(!Self_Args[0]){
+    console.log("Invalid webhook_link.")
+    process.exit()
+}
 
-# Ejecutar la función principal find_open_groups()
-find_open_groups()
+setInterval(function(){
+    const group_id = Math.floor(Math.random() * 3150000) + 3150000
+
+    Request(`https://groups.roblox.com/v1/groups/${group_id}`, function(err, res, body){
+        if(err){
+            console.log(`[ORGF][Invalid] https://www.roblox.com/groups/group.aspx?gid=${group_id}`)
+            return
+        }
+
+        body = JSON.parse(body)
+
+        if(!body.owner && body.publicEntryAllowed){
+            Request.post(Self_Args[0], {
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: `content=[ORGF][Valid] https://www.roblox.com/groups/group.aspx?gid=${group_id} | Name: ${body.name} | Members: ${body.memberCount}`
+            }, function(err, res, body){
+                console.log(`[ORGF][Valid] https://www.roblox.com/groups/group.aspx?gid=${group_id} | Name: ${body.name} | Members: ${body.memberCount}`)
+            })
+            
+            return
+        }else{
+            console.log(`[ORGF][Invalid] https://www.roblox.com/groups/group.aspx?gid=${group_id} | Name: ${body.name} | Members: ${body.memberCount}`)
+            return
+        }
+    })
+}, 1000)
